@@ -26,3 +26,20 @@ python setup.py develop --all
 
 pip install openai==0.8.0
 pip install grad-cam
+
+python -m habitat_sim.utils.datasets_download --uids habitat_test_scenes --data-path data/
+
+python -m habitat_sim.utils.datasets_download --uids habitat_test_pointnav_dataset --data-path data/
+
+pip install pygame==2.0.1 pybullet==3.0.4
+
+cd habitat-lab && pip install -e habitat-lab
+sudo apt-get install libegl1-mesa-dev
+
+# WSL2 Nvidia-smi issue:
+# https://github.com/facebookresearch/habitat-sim/issues/1511
+sh NVIDIA-Linux-x86_64-535.54.03.run --extract-only   
+cd NVIDIA-Linux-x86_64-535.54.03
+ln -s ./libEGL.so.535.54.03  libEGL.so.1
+ln -s ./libGL.so.535.54.03 libGL.so.1      
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/hoa/NVIDIA-Linux-x86_64-535.54.03
